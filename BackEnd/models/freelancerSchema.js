@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var freelancerSchema = new mongoose.Schema({
     firstName : String,
     lastName : String,
-    phoneNumber : String,
+    phone : String,
     birthDate : String,
     address : String,
     rateWork : Number,
@@ -14,7 +14,7 @@ var freelancerSchema = new mongoose.Schema({
     gitHub_link : String,
     portFolio_link : String,
     skills : [{skill : String}],
-    langages :[{langage : String}],
+    languages :[{language : String}],
     projects : [{ type : mongoose.Schema.Types.ObjectId, ref : 'project' }]
 });
 

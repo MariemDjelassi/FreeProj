@@ -1,0 +1,11 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!--  <span>HOME</span> -->
+       <span><a routerLink="/home">HOME</a></span>
+       <span class="spacer"></span>
+       <a mat-button routerLink="/registerFreelancer">Register</a>
+       <a mat-button routerLink="/login">Login</a>
+       <a mat-button routerLink="/home" (click)="logout()" aria-haspopup="true" aria-expanded="false">Log Out</a>
+    </mat-toolbar-row>
+ </mat-toolbar>
