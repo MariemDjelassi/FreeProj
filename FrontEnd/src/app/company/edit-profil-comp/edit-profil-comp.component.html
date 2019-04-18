@@ -1,0 +1,221 @@
+<h5>Edit Profil</h5>
+<form [formGroup]="profilCompForm">
+  <div class="row">
+    <div class="col">
+      <div class="upload-img-bar">
+        <span><img src="" alt=""
+            class="rounded-circle z-depth-1-half avatar-pic" /><i>x</i></span>
+      </div>
+    </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="img">Logo of Company</label>
+          <input type="file" class="form-control-file" id="img" formControlName="logo">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="nameComp">Company Name</label>
+          <input type="text" class="form-control" id="nameComp" formControlName="name" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="since">Since</label>
+          <input type="number" class="form-control" id="since" formControlName="foundYear">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="teamSize">Team Size</label>
+          <select class="form-control" id="teamSize" formControlName="size">
+            <option selected>Choose...</option>
+            <option value="1">[0..9]</option>
+            <option value="2">[10..49]</option>
+            <option value="3">[50..99]</option>
+            <option value="4">+100</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="descComp">Example textarea</label>
+          <textarea class="form-control" id="descComp" rows="5" formControlName="description"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="FBLink">FaceBook Link</label>
+          <input type="text" class="form-control" id="FBLink" formControlName="fb_link">
+          <i class="fa fa-facebook"></i>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>LinkedIn Link</label>
+          <input type="text" class="form-control" id="LInLink" formControlName="linkedIn">
+          <i class="fa fa-linkedin"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="cell">Phone Number</label>
+          <input type="tel" class="form-control" id="cell" formControlName="phone">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="mail">Email</label>
+          <input type="email" class="form-control" id="mail" formControlName="email">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="adres">Address</label>
+          <input type="text" class="form-control" id="adres" formControlName="address">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="webSite">Website Link</label>
+          <input type="text" class="form-control" id="webSite" formControlName="website">
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="submit" (click)="updateProfil(id,profilCompForm)">Update</button>
+    </div>
+</form>
+
+
+
+
+<!-- <form [formGroup]="profilCompForm" class="form-group pf-field">
+  <div class="col-lg-9 column input-group mb-3">
+    <div class="padding-left">
+      <div class="profile-title">
+        <div class="upload-img-bar">
+          <span><img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" alt=""
+              class="rounded-circle z-depth-1-half avatar-pic" /><i>x</i></span>
+          <div class="upload-info">
+            
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile02">
+                  <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text" id="">Upload</span>
+                </div>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+      <div class="profile-form-edit">
+        <div class="row">
+          <div class="col-lg-6">
+            <span class="pf-title">Company Name</span>
+            <div class="pf-field">
+              <input type="text" class="form-control" formControlName="name" placeholder="Company Name" />
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <span class="pf-title">Since</span>
+            <div class="pf-field">
+              <input type="text" placeholder="1957" />
+            </div>
+          </div>
+          <div class="col-lg-6 ">
+            <span class="pf-title">Team Size</span>
+            <br>
+            <div class="pf-field">
+              <select class="chosen custom-select">
+                <option selected>Choose...</option>
+                <option value="1">[0..9]</option>
+                <option value="2">[10..49]</option>
+                <option value="3">[50..99]</option>
+                <option value="4">+100</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <span class="pf-title">Description</span>
+            <div class="pf-field">
+              <textarea>Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social-edit" id="sn">
+        <h3>Social Edit</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <span class="pf-title">Facebook</span>
+            <div class="pf-field">
+              <input type="text" placeholder="www.facebook.com/TeraPlaner" />
+              <i class="fa fa-facebook"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="pf-title">Twitter</span>
+            <div class="pf-field">
+              <input type="text" placeholder="www.twitter.com/TeraPlaner" />
+              <i class="fa fa-twitter"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="pf-title">Google</span>
+            <div class="pf-field">
+              <input type="text" placeholder="www.google-plus.com/TeraPlaner" />
+              <i class="la la-google"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="pf-title">Linkedin</span>
+            <div class="pf-field">
+              <input type="text" placeholder="www.Linkedin.com/TeraPlaner" />
+              <i class="fa fa-linkedin"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-edit" id="ci">
+        <h3>Contact</h3>
+          <div class="row">
+            <div class="col-lg-4">
+              <span class="pf-title">Phone Number</span>
+              <div class="pf-field">
+                <input type="text" placeholder="+90 538 963 58 96" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <span class="pf-title">Email</span>
+              <div class="pf-field">
+                <input type="text" placeholder="demo@jobhunt.com" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <span class="pf-title">Website</span>
+              <div class="pf-field">
+                <input type="text" placeholder="www.jobhun.com" />
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <button type="submit">Update</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</form> -->

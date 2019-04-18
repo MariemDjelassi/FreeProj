@@ -71,7 +71,7 @@ router.post('/updateProject/:idProj', passport.authenticate('bearer', {session:f
 })
 // 
 // apply offer to project by freelancer
-router.post('/applyOffer/:idFreel/:idProj', async(req,res) => {
+router.post('/applyOffer/:idProj/:idFreel', async(req,res) => {
     var freel = new Freelancer(req.body);
     freel['_id'] = req.params.idFreel;
     await Project.findByIdAndUpdate(req.params.idProj, {$addToSet:{applied_freelancers:{'id_freelancer': freel, 'offer': '1234'}}}). exec((err, proj) => {
@@ -96,7 +96,7 @@ router.get('/getFreels/:idProj', async(req,res) => {
 })
 
 // accept offer to project by company 
-router.post('/acceptOffer/:idFreel/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/acceptOffer/:idProj/:idFreel', passport.authenticate('bearer', {session:false}), async(req,res) => {
     await Project.findByIdAndUpdate(req.params.idProj, {$set:{accepted_freelancer: req.params.idFreel}}, async(err, offre) => {
         if (err){
             res.send(err);

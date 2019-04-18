@@ -1,5 +1,9 @@
+import { EditProfilCompComponent } from './company/edit-profil-comp/edit-profil-comp.component';
+import { EditProfilFreelComponent } from './freelancer/edit-profil-freel/edit-profil-freel.component';
+import { ListProjectsComponent } from './freelancer/list-projects/list-projects.component';
+import { ApplyOfferComponent } from './freelancer/apply-offer/apply-offer.component';
+import { FreelancerComponent } from './freelancer/freelancer.component';
 import { AddProjectComponent } from './company/add-project/add-project.component';
-import { EditProfilComponent } from './company/edit-profil/edit-profil.component';
 import { CompanyComponent } from './company/company.component';
 import { AuthGuard } from './authenticate/auth.guard';
 import { RegisterFreelancerComponent } from './register-freelancer/register-freelancer.component';
@@ -7,12 +11,7 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
-// tslint:disable-next-line:max-line-length
-import { MatNativeDateModule, MatIconModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatListModule } from '@angular/material';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 const routes: Routes = [
   {path : '', pathMatch : 'full', redirectTo : 'home'},
@@ -20,24 +19,36 @@ const routes: Routes = [
   {path : 'login', component : LoginComponent},
   {path : 'registerCompany', component : RegisterCompanyComponent},
   {path : 'registerFreelancer', component : RegisterFreelancerComponent},
-  {path : 'company', component : CompanyComponent, canActivate : [AuthGuard],
+  {path : 'company', component : CompanyComponent,
     children : [
     {
-      path : 'editProfil',
-      component : EditProfilComponent,
+      path : 'editProfilComp',
+      component : EditProfilCompComponent,
     },
     {
       path : 'addProject',
       component : AddProjectComponent,
     }]
   },
-
+  {path : 'freelancer', component : FreelancerComponent,
+    children : [
+    {
+      path : 'editProfilFreel',
+      component : EditProfilFreelComponent,
+    },
+    {
+      path : 'applyOffer',
+      component : ApplyOfferComponent,
+    },
+    {
+      path : 'listProjects',
+      component : ListProjectsComponent,
+    }]
+  }
 ];
 
 @NgModule({
-  // tslint:disable-next-line:max-line-length
-  imports: [RouterModule.forRoot(routes), MatButtonModule, MatToolbarModule, MatNativeDateModule, MatDatepickerModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule, MatRadioModule],
-  // tslint:disable-next-line:max-line-length
-  exports: [RouterModule, MatButtonModule, MatToolbarModule, MatNativeDateModule, MatDatepickerModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule, MatRadioModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

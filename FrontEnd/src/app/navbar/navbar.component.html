@@ -1,11 +1,20 @@
-
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <!--  <span>HOME</span> -->
-       <span><a routerLink="/home">HOME</a></span>
-       <span class="spacer"></span>
-       <a mat-button routerLink="/registerFreelancer">Register</a>
-       <a mat-button routerLink="/login">Login</a>
-       <a mat-button routerLink="/home" (click)="logout()" aria-haspopup="true" aria-expanded="false">Log Out</a>
-    </mat-toolbar-row>
- </mat-toolbar>
+   <mat-toolbar-row class="hgt">
+      <span>
+         <div class="res-logo">
+            <a routerLink="/home">
+               <img src="./../../assets/images/resource/logo4.png" alt="" />
+            </a>
+         </div>
+      </span>
+      <span class="spacer"></span>
+      <a mat-button routerLink="/registerFreelancer">REGISTER</a>
+      <a mat-button routerLink="/login">LOGIN</a>
+      <a mat-button routerLink="/home" (click)="logout()" aria-haspopup="true" aria-expanded="false">LOG OUT</a>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+   </mat-toolbar-row>
+</mat-toolbar>

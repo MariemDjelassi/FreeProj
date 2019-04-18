@@ -11,23 +11,23 @@ export class ProjectApiService {
 
   constructor( private http: HttpClient ) { }
 
-  setProject(idComp) {
-    return this.http.get(`http://localhost:3000/Project/createProject/${idComp}`, {headers: this.Header});
+  createProject(idComp) {
+    return this.http.post(`http://localhost:3000/Project/createProject/${idComp}`, {headers: this.Header});
   }
 
-  getProjById(idProj) {
+  getOneProject(idProj) {
     return this.http.get(`http://localhost:3000/Project/readProject/${idProj}`, {headers: this.Header});
   }
 
-  getProjects() {
+  getAllProjects() {
     return this.http.get(`http://localhost:3000/Project/readProjects`, {headers: this.Header});
   }
 
-  upDateProj(idProj) {
+  upDateProject(idProj) {
     return this.http.post(`http://localhost:3000/Project/updateProject/${idProj}`, {headers: this.Header});
   }
 
-  deleteProj(idProj) {
+  deleteProject(idProj) {
     return this.http.post(`http://localhost:3000/Project/deleteProject/${idProj}`, {headers: this.Header});
   }
 
@@ -37,12 +37,12 @@ export class ProjectApiService {
     return this.http.post('http://localhost:3000/Project/upload', file);
   }
 
-  applyOffer(idFreel, idProj, body) {
-    return this.http.post(`http://localhost:3000/Project/applyOffer/${idFreel}/${idProj}`, body, {headers: this.Header});
+  applyOffer(idProj, idFreel, body) {
+    return this.http.post(`http://localhost:3000/Project/applyOffer/${idProj}/${idFreel}`, body, {headers: this.Header});
   }
 
-  acceptOffer(idFreel, idProj, body) {
-    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idFreel}/${idProj}`, body, {headers: this.Header});
+  acceptOffer(idProj, idFreel, body) {
+    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idProj}/${idFreel}`, body, {headers: this.Header});
   }
 
   changeStatusToInProgress(idProj) {
