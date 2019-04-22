@@ -11,7 +11,7 @@ var projectSchema = new mongoose.Schema({
     file : String,
     company_owner : { type : mongoose.Schema.Types.ObjectId, ref : 'company' },
     applied_freelancers : [{ id_freelancer : { type : mongoose.Schema.Types.ObjectId, ref : 'freelancer' }, offer : Number}],
-    accepted_freelancer : { type : mongoose.Schema.Types.ObjectId, ref : 'freelancer', unique : true },
+    accepted_freelancer : { type : mongoose.Schema.Types.ObjectId, ref : 'freelancer' },
     status : {type : String, enum : ['waiting', 'in progress', 'completed'], default : 'waiting',
         validate: {
             isAsync: true,

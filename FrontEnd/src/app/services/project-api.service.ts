@@ -7,12 +7,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ProjectApiService {
 
   Token = localStorage.getItem('token');
-  Header = new HttpHeaders().append('Authorization', 'Bearer' + this.Token);
+  Header = new HttpHeaders().append('Authorization', 'Bearer ' + this.Token);
 
   constructor( private http: HttpClient ) { }
 
-  createProject(idComp) {
-    return this.http.post(`http://localhost:3000/Project/createProject/${idComp}`, {headers: this.Header});
+  createProject(idComp, body) {
+    return this.http.post(`http://localhost:3000/Project/createProject/${idComp}`, body, {headers: this.Header});
   }
 
   getOneProject(idProj) {
@@ -23,12 +23,16 @@ export class ProjectApiService {
     return this.http.get(`http://localhost:3000/Project/readProjects`, {headers: this.Header});
   }
 
-  upDateProject(idProj) {
-    return this.http.post(`http://localhost:3000/Project/updateProject/${idProj}`, {headers: this.Header});
+  getAllProjByComp(idComp) {
+    return this.http.get(`http://localhost:3000/Project/readProjects/${idComp}`, {headers: this.Header});
+  }
+
+  upDateProject(idProj, body) {
+    return this.http.post(`http://localhost:3000/Project/updateProject/${idProj}`, body, {headers: this.Header});
   }
 
   deleteProject(idProj) {
-    return this.http.post(`http://localhost:3000/Project/deleteProject/${idProj}`, {headers: this.Header});
+    return this.http.post(`http://localhost:3000/Project/deleteProject/${idProj}`, null,  {headers: this.Header});
   }
 
   UploadImg(file) {
@@ -46,10 +50,10 @@ export class ProjectApiService {
   }
 
   changeStatusToInProgress(idProj) {
-    return this.http.post(`http://localhost:3000/Project/inProgressStatus/${idProj}`, {headers: this.Header});
+    return this.http.post(`http://localhost:3000/Project/inProgressStatus/${idProj}`, null, {headers: this.Header});
   }
 
   changeStatusToCompleted(idProj) {
-    return this.http.post(`http://localhost:3000/Project/completedStatus/${idProj}`, {headers: this.Header});
+    return this.http.post(`http://localhost:3000/Project/completedStatus/${idProj}`, null, {headers: this.Header});
   }
 }

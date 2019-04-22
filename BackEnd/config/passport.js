@@ -9,6 +9,7 @@ passport.use( new BearerStrategy( function(token, done) {
     jwt.verify(token,'my-jwt-secret', function(err,decoded) { // my-jwt-secret : a modifier 
         if(err) { return done(err) }
         if(decoded) {
+            console.log(decoded)
             User.findOne({ _id: decoded._id }, function(err, user) {
                 if (err) { return done(err) }
                 if (!user) { return done(null, false) }

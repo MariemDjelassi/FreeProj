@@ -1,13 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule, MatNativeDateModule, MatIconModule, MatCheckboxModule} from '@angular/material';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatListModule } from '@angular/material';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,10 +17,11 @@ import { CompanyComponent } from './company/company.component';
 import { AddProjectComponent } from './company/add-project/add-project.component';
 import { FreelancerComponent } from './freelancer/freelancer.component';
 import { ApplyOfferComponent } from './freelancer/apply-offer/apply-offer.component';
-import { ListProjectsComponent } from './freelancer/list-projects/list-projects.component';
 import { EditProfilFreelComponent } from './freelancer/edit-profil-freel/edit-profil-freel.component';
 import { EditProfilCompComponent } from './company/edit-profil-comp/edit-profil-comp.component';
-
+import { ListProjectsComponent } from './company/list-projects/list-projects.component';
+import { DeleteDialogComponent } from './company/list-projects/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from './company/list-projects/edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -40,30 +37,22 @@ import { EditProfilCompComponent } from './company/edit-profil-comp/edit-profil-
     AddProjectComponent,
     FreelancerComponent,
     ApplyOfferComponent,
-    ListProjectsComponent,
     EditProfilFreelComponent,
-    EditProfilCompComponent
+    EditProfilCompComponent,
+    ListProjectsComponent,
+    DeleteDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatMenuModule,
     JwtModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatListModule,
-    MatRadioModule,
+    MaterialModule
   ],
+  exports: [DeleteDialogComponent, EditDialogComponent],
+  entryComponents: [DeleteDialogComponent, EditDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

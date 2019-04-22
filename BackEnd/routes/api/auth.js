@@ -17,6 +17,7 @@ router.post('/login', async(req,res) => {
     if(user.role === 'Company') {
         Company.findOne({ _id: user.company }).then(comp => {
             const token = jwt.sign({ 
+                '_id':user._id,
                 'idComp': comp._id,
                 'role': "Company",
                 'email': user.email,
@@ -38,8 +39,9 @@ router.post('/login', async(req,res) => {
     if(user.role === 'Freelancer') {
         Freelancer.findOne({ _id: user.freelancer }).then(freel => {
             const token = jwt.sign({ 
-                'idComp': freel._id,
-                'role': "Company",
+                '_id':user._id,
+                'idFreel': freel._id,
+                'role': "Freelancer",
                 'email': user.email,
                 'password':user.password,
                 'firstName': freel.firstName,

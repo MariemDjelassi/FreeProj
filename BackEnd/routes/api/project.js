@@ -9,15 +9,15 @@ var mongoose = require('mongoose');
 router.post('/upload', upload.single('file'), function (req, res, next) {
     res.send(req.file)
 })
-// 
-router.post('/createProject/:idCompany', upload.single('file'), passport.authenticate('bearer', {session: false}), async(req,res) => {
+// passport.authenticate('bearer', {session:false}),
+router.post('/createProject/:idCompany', upload.single('file'), async(req,res) => {
     var project = new Project(req.body);
     project['company_owner'] = req.params.idCompany; // affect user to project
     await project.save(async(err,proj) => {
         if(err) {
             res.send(err)
         }
-        res.send('Success Adding Project!');
+        res.send({message: 'Success Adding Project!'});
         // affect project to user 
         // await Company.findByIdAndUpdate(req.params.idCompany, {$push:{projects: proj}}, async(err,user) => {
         //     res.send('Success Adding Project!')
@@ -25,7 +25,7 @@ router.post('/createProject/:idCompany', upload.single('file'), passport.authent
     })
 })
 //  
-router.get('/readProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.get('/readProject/:idProj', async(req,res) => {
     await Project.findById(req.params.idProj).exec(async(err,proj) => {
         if (err){
             res.send(err);
@@ -43,16 +43,25 @@ router.get('/readProjects', passport.authenticate('bearer', {session:false}), as
     })
 })
 
-router.delete('/deleteProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.get('/readProjects/:idComp', passport.authenticate('bearer', {session:false}), async(req,res) => {
+    await Project.find({company_owner: req.params.idComp}).exec(async(err, proj) => {
+        if (err) {
+            res.send(err);
+        }
+        res.send(proj);
+    })
+})
+
+router.post('/deleteProject/:idProj',  passport.authenticate('bearer', {session:false}), async(req,res) => {
     await Project.findByIdAndRemove(req.params.idProj).exec((err,proj) => {
         if(err){
             console.log(err);
         }
-        res.send('Deleted successfully!');
+        res.send({message: 'Deleted successfully!'});
     })
 })
 
-router.post('/updateProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) =>{
+router.post('/updateProject/:idProj', async(req,res) =>{
     await Project.findByIdAndUpdate(req.params.idProj, {
         titleProject: req.body.titleProject,
         description: req.body.description,
@@ -66,7 +75,7 @@ router.post('/updateProject/:idProj', passport.authenticate('bearer', {session:f
             if(err){
                 console.log(err);
             }
-        res.send('Updated successfully!');
+        res.send({message: 'Updated successfully!'});
     })
 })
 // 
@@ -96,7 +105,7 @@ router.get('/getFreels/:idProj', async(req,res) => {
 })
 
 // accept offer to project by company 
-router.post('/acceptOffer/:idProj/:idFreel', passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/acceptOffer/:idProj/:idFreel', async(req,res) => {
     await Project.findByIdAndUpdate(req.params.idProj, {$set:{accepted_freelancer: req.params.idFreel}}, async(err, offre) => {
         if (err){
             res.send(err);
@@ -106,7 +115,7 @@ router.post('/acceptOffer/:idProj/:idFreel', passport.authenticate('bearer', {se
 })
 // 
 // change status of project by company
-router.post('/inProgressStatus/:idProj',passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/inProgressStatus/:idProj', async(req,res) => {
     await Project.findByIdAndUpdate(req.params.idProj, {$set:{status: 'in progress'}}, async(err, offre) => {
         if (err) {
             res.send(err);
@@ -115,7 +124,7 @@ router.post('/inProgressStatus/:idProj',passport.authenticate('bearer', {session
     })
 })
 
-router.post('/completedStatus/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/completedStatus/:idProj', async(req,res) => {
     await Project.findOneByIdAndUpdate(req.params.idProj, {$set:{status: 'completed'}}, async(err, offre) => {
         if (err){
             res.send(err);

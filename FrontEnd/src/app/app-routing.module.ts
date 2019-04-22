@@ -1,6 +1,8 @@
+import { DeleteDialogComponent } from './company/list-projects/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from './company/list-projects/edit-dialog/edit-dialog.component';
+import { ListProjectsComponent } from './company/list-projects/list-projects.component';
 import { EditProfilCompComponent } from './company/edit-profil-comp/edit-profil-comp.component';
 import { EditProfilFreelComponent } from './freelancer/edit-profil-freel/edit-profil-freel.component';
-import { ListProjectsComponent } from './freelancer/list-projects/list-projects.component';
 import { ApplyOfferComponent } from './freelancer/apply-offer/apply-offer.component';
 import { FreelancerComponent } from './freelancer/freelancer.component';
 import { AddProjectComponent } from './company/add-project/add-project.component';
@@ -28,6 +30,20 @@ const routes: Routes = [
     {
       path : 'addProject',
       component : AddProjectComponent,
+    },
+    {
+      path : 'ListProjects',
+      component : ListProjectsComponent,
+      children : [
+        {
+          path : 'editDialog',
+          component : EditDialogComponent,
+        },
+        {
+          path : 'deleteDialog',
+          component : DeleteDialogComponent,
+        }
+      ]
     }]
   },
   {path : 'freelancer', component : FreelancerComponent,
@@ -39,10 +55,6 @@ const routes: Routes = [
     {
       path : 'applyOffer',
       component : ApplyOfferComponent,
-    },
-    {
-      path : 'listProjects',
-      component : ListProjectsComponent,
     }]
   }
 ];
