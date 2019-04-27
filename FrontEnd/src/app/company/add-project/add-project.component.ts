@@ -37,6 +37,7 @@ export class AddProjectComponent implements OnInit {
     this.projService.createProject(idComp, form.value).subscribe((res) => {
       console.log(res);
     });
+    // location.reload();
     this.router.navigateByUrl('/company/ListProjects');
   }
 

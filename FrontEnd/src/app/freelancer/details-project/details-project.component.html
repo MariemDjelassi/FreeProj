@@ -1,0 +1,82 @@
+<section>
+  <div class="block">
+    <div class="container">
+      <div class="row mrgn" *ngFor="let element of project">
+        <div class="col-lg-8 column">
+          <div class="job-single-sec">
+            <div class="job-single-head2">
+              <div class="job-title2">
+                <h3>{{element?.titleProject}}</h3>
+              </div>
+              <ul class="tags-jobs">
+                <li><i class="la la-calendar-o"></i> Start Date: {{element?.start_date}}</li>
+                <br>
+                <li><i class="la la-money"></i> Mission Salary : <span>$ {{element?.min_offer}} -
+                    $ {{element?.max_offer}}</span></li>
+                <br>
+                <li><i class="la la-thumb-tack"></i> Duration: {{element?.duration}} days</li>
+              </ul>
+            </div>
+            <div class="job-details">
+              <h3>Project Description</h3>
+              {{element?.description}}
+              <h3>Required Knowledge, Skills, and Abilities</h3>
+              <ul *ngFor="let elem of element?.skills">
+                <li>{{elem.skill}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 column">
+          <div class="job-single-head style2">
+            <div class="job-thumb"> <img src="./../../../assets/images/resource/sjs.png" alt="logo of Company" /> </div>
+            <!-- http://localhost:3000/{{removeFakePathUrl(element?.company_owner?.logo)}} -->
+            <div class="job-head-info">
+              <h4>{{element?.company_owner?.name}}</h4>
+              <p><i class="la la-map-marker"></i>{{element?.company_owner?.address}}</p>
+              <p><i class="la la-unlink"></i>{{element?.company_owner?.website}}</p>
+              <p><i class="la la-phone"></i> {{element?.company_owner?.phone}}</p>
+              <p><i class="la la-envelope-o"></i><a class="__cf_email__">Send Mail</a></p>
+            </div>
+            <div class="share-bar">
+              <a class="share-fb" routerLink="{{element?.company_owner?.fb_link}}"><i class="fa fa-facebook"></i></a>
+              <a class="share-twitter" routerLink="{{element?.company_owner?.linkedIn}}"><i
+                  class="fa fa-twitter"></i></a>
+              <br> <br> <br>
+            </div>
+            <a class="apply-job-btn" data-toggle="modal" data-target="#exampleModal"><i
+                class="la la-paper-plane"></i>Apply Now</a>
+            <a class="viewall-jobs" routerLink="/freelancer/listAllProj">All Projects</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Apply Offer Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apply an offer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="example-form" [formGroup]="offerForm">
+          <mat-form-field class="example-full-width">
+            <input matInput type= "number" placeholder="put your offer" formControlName="offer">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="applyProj(offerForm)">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>

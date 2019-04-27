@@ -1,0 +1,41 @@
+<div class="container mrgLft">
+  <div class="row">
+    <div class="col-lg-9">
+      <mat-form-field>
+        <input matInput [(ngModel)]="searchText" (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Company </th>
+          <td mat-cell *matCellDef="let element">
+            {{element?.company_owner?.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="titleProject">
+          <th mat-header-cell *matHeaderCellDef class="header"> Project </th>
+          <td mat-cell *matCellDef="let element">
+            <a [routerLink]="['/freelancer/detailsProject',element?._id]">
+              {{element?.titleProject}}
+            </a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skill">
+          <th mat-header-cell *matHeaderCellDef> Skills </th>
+          <td mat-cell *matCellDef="let element"> {{element?.skills}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="length">
+          <th mat-header-cell *matHeaderCellDef> Applies </th>
+          <td mat-cell *matCellDef="let element">{{element?.applied_freelancers?.length}}&nbsp;&nbsp;Applies</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>

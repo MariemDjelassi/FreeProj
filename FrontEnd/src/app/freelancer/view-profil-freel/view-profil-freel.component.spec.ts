@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplyOfferComponent } from './apply-offer.component';
+import { ViewProfilFreelComponent } from './view-profil-freel.component';
 
-describe('ApplyOfferComponent', () => {
-  let component: ApplyOfferComponent;
-  let fixture: ComponentFixture<ApplyOfferComponent>;
+describe('ViewProfilFreelComponent', () => {
+  let component: ViewProfilFreelComponent;
+  let fixture: ComponentFixture<ViewProfilFreelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplyOfferComponent ]
+      declarations: [ ViewProfilFreelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplyOfferComponent);
+    fixture = TestBed.createComponent(ViewProfilFreelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

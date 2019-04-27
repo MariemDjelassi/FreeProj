@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         console.log( this.authService.connectedUser);
         const role = this.authService.connectedUser.role;
         if ( role === 'Freelancer') {
-          this.router.navigate(['/dashbordFreel']);
+          this.router.navigate(['/freelancer']);
         } else {
           this.router.navigate(['/company']);
         }

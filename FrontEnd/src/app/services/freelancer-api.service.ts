@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FreelancerApiService {
 
   Token = localStorage.getItem('token');
-  Header = new HttpHeaders().append('Authorization', 'Bearer' + this.Token);
+  Header = new HttpHeaders().append('Authorization', 'Bearer ' + this.Token);
 
   constructor( private http: HttpClient ) { }
 

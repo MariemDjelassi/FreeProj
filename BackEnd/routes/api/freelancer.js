@@ -12,7 +12,7 @@ router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: 
     });
 })
 
-router.get('/getFreelancer/:idFreel',  async(req,res) => {
+router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Freelancer.findById(req.params.idFreel).exec((err,Freel) => {
         if (err) {
             res.send(err);
@@ -21,7 +21,7 @@ router.get('/getFreelancer/:idFreel',  async(req,res) => {
     })
 })
 
-router.get('/getFreelancers',  async(req,res) => {
+router.get('/getFreelancers', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Freelancer.find().exec(function(err,Freels) {
         if (err) {
             res.send(err);

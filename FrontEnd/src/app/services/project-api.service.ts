@@ -14,7 +14,7 @@ export class ProjectApiService {
   createProject(idComp, body) {
     return this.http.post(`http://localhost:3000/Project/createProject/${idComp}`, body, {headers: this.Header});
   }
-
+// *************
   getOneProject(idProj) {
     return this.http.get(`http://localhost:3000/Project/readProject/${idProj}`, {headers: this.Header});
   }
@@ -22,7 +22,7 @@ export class ProjectApiService {
   getAllProjects() {
     return this.http.get(`http://localhost:3000/Project/readProjects`, {headers: this.Header});
   }
-
+// *************
   getAllProjByComp(idComp) {
     return this.http.get(`http://localhost:3000/Project/readProjects/${idComp}`, {headers: this.Header});
   }
@@ -45,13 +45,17 @@ export class ProjectApiService {
     return this.http.post(`http://localhost:3000/Project/applyOffer/${idProj}/${idFreel}`, body, {headers: this.Header});
   }
 
-  acceptOffer(idProj, idFreel, body) {
-    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idProj}/${idFreel}`, body, {headers: this.Header});
+  // getOffers(idProj) {
+  //   return this.http.get(`http://localhost:3000/Project/getFreels/${idProj}`, {headers: this.Header});
+  // }
+
+  acceptOffer(idProj, idFreel) {
+    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idProj}/${idFreel}`, {headers: this.Header});
   }
 
-  changeStatusToInProgress(idProj) {
-    return this.http.post(`http://localhost:3000/Project/inProgressStatus/${idProj}`, null, {headers: this.Header});
-  }
+  // changeStatusToInProgress(idProj) {
+  //   return this.http.post(`http://localhost:3000/Project/inProgressStatus/${idProj}`, null, {headers: this.Header});
+  // }
 
   changeStatusToCompleted(idProj) {
     return this.http.post(`http://localhost:3000/Project/completedStatus/${idProj}`, null, {headers: this.Header});

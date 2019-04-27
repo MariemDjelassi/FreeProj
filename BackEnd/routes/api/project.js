@@ -10,7 +10,7 @@ router.post('/upload', upload.single('file'), function (req, res, next) {
     res.send(req.file)
 })
 // passport.authenticate('bearer', {session:false}),
-router.post('/createProject/:idCompany', upload.single('file'), async(req,res) => {
+router.post('/createProject/:idCompany', upload.single('file'), passport.authenticate('bearer', {session:false}), async(req,res) => {
     var project = new Project(req.body);
     project['company_owner'] = req.params.idCompany; // affect user to project
     await project.save(async(err,proj) => {
@@ -25,8 +25,8 @@ router.post('/createProject/:idCompany', upload.single('file'), async(req,res) =
     })
 })
 //  
-router.get('/readProject/:idProj', async(req,res) => {
-    await Project.findById(req.params.idProj).exec(async(err,proj) => {
+router.get('/readProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+    await Project.findById(req.params.idProj).populate({ path: 'company_owner' }).populate({ path: 'applied_freelancers.id_freelancer' }).exec(async(err,proj) => {
         if (err){
             res.send(err);
         }
@@ -35,7 +35,7 @@ router.get('/readProject/:idProj', async(req,res) => {
 })
 
 router.get('/readProjects', passport.authenticate('bearer', {session:false}), async(req,res) => {
-    await Project.find().exec(async(err, proj) => {
+    await Project.find().populate({ path: 'applied_freelancers.id_freelancer' }).populate({ path: 'company_owner' }).exec(async(err, proj) => {
         if (err){
             res.send(err);
         }
@@ -52,7 +52,7 @@ router.get('/readProjects/:idComp', passport.authenticate('bearer', {session:fal
     })
 })
 
-router.post('/deleteProject/:idProj',  passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/deleteProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
     await Project.findByIdAndRemove(req.params.idProj).exec((err,proj) => {
         if(err){
             console.log(err);
@@ -61,7 +61,7 @@ router.post('/deleteProject/:idProj',  passport.authenticate('bearer', {session:
     })
 })
 
-router.post('/updateProject/:idProj', async(req,res) =>{
+router.post('/updateProject/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) =>{
     await Project.findByIdAndUpdate(req.params.idProj, {
         titleProject: req.body.titleProject,
         description: req.body.description,
@@ -80,10 +80,11 @@ router.post('/updateProject/:idProj', async(req,res) =>{
 })
 // 
 // apply offer to project by freelancer
-router.post('/applyOffer/:idProj/:idFreel', async(req,res) => {
+router.post('/applyOffer/:idProj/:idFreel', passport.authenticate('bearer', {session:false}), async(req,res) => {
     var freel = new Freelancer(req.body);
     freel['_id'] = req.params.idFreel;
-    await Project.findByIdAndUpdate(req.params.idProj, {$addToSet:{applied_freelancers:{'id_freelancer': freel, 'offer': '1234'}}}). exec((err, proj) => {
+    Offer = req.body.offer;
+    await Project.findByIdAndUpdate(req.params.idProj, {$addToSet:{applied_freelancers:{'id_freelancer': freel, 'offer': Offer}}}). exec((err, proj) => {
         if (err) { res.send(err); }
         var project = new Project(req.body);
         project['_id'] = req.params.idProj;
@@ -95,36 +96,36 @@ router.post('/applyOffer/:idProj/:idFreel', async(req,res) => {
 })
 
 // read freels applied to project problem in populate
-router.get('/getFreels/:idProj', async(req,res) => {
-    await Project.findOne({_id:req.params.idProj}).populate({ path: 'applied_freelancers', select: 'id_freelancer' }).exec((err,Frel) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send(Frel);
-    })
-})
+// router.get('/getFreels/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+//     await Project.findOne({_id:req.params.idProj}).populate({ path: 'applied_freelancers.id_freelancer' }).exec((err,Frel) => {
+//         if (err) {
+//             res.send(err);
+//         }
+//         res.send(Frel);
+//     })
+// })
 
 // accept offer to project by company 
-router.post('/acceptOffer/:idProj/:idFreel', async(req,res) => {
-    await Project.findByIdAndUpdate(req.params.idProj, {$set:{accepted_freelancer: req.params.idFreel}}, async(err, offre) => {
+router.post('/acceptOffer/:idProj/:idFreel', passport.authenticate('bearer', {session:false}), async(req,res) => {
+    await Project.findByIdAndUpdate(req.params.idProj, {$set:{"accepted_freelancer.id_freelancer": req.params.idFreel, "status": "in progres"}}, async(err, offre) => {
         if (err){
             res.send(err);
         }
-        res.send({message: 'accepted freelancer!!'});
-    })
-})
-// 
-// change status of project by company
-router.post('/inProgressStatus/:idProj', async(req,res) => {
-    await Project.findByIdAndUpdate(req.params.idProj, {$set:{status: 'in progress'}}, async(err, offre) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send({message: 'status changed to in progress.'});
+        res.send({message: 'accepted offer from freelancer!!'});
     })
 })
 
-router.post('/completedStatus/:idProj', async(req,res) => {
+// change status of project by company
+// router.post('/inProgressStatus/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
+//     await Project.findByIdAndUpdate(req.params.idProj, {$set:{status: 'in progress'}}, async(err, offre) => {
+//         if (err) {
+//             res.send(err);
+//         }
+//         res.send({message: 'status changed to in progress.'});
+//     })
+// })
+
+router.post('/completedStatus/:idProj', passport.authenticate('bearer', {session:false}), async(req,res) => {
     await Project.findOneByIdAndUpdate(req.params.idProj, {$set:{status: 'completed'}}, async(err, offre) => {
         if (err){
             res.send(err);

@@ -3,6 +3,7 @@ import { MatDialogModule, MatFormFieldModule, MatButtonModule, MatInputModule } 
 import { MatMenuModule, MatNativeDateModule, MatIconModule, MatCheckboxModule} from '@angular/material';
 import { MatCardModule, MatRadioModule, MatListModule, MatToolbarModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   exports:
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatListModule,
     MatToolbarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule
     ]
 })
 export class MaterialModule {}

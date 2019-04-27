@@ -29,6 +29,7 @@ export class EditDialogComponent implements OnInit {
       start_date: new FormControl(''),
       duration: new FormControl(''),
       description: new FormControl(''),
+      status: new FormControl('waiting'),
       // file: new FormControl(data.)
     });
   }
@@ -45,6 +46,7 @@ export class EditDialogComponent implements OnInit {
         start_date: new FormControl(this.project.start_date),
         duration: new FormControl(this.project.duration),
         description: new FormControl(this.project.description),
+        status: new FormControl('waiting'),
         // file: new FormControl(data.)
       });
     });

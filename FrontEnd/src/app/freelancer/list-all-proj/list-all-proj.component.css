@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mrgLft{
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+.mat-elevation-z8{
+    margin-top: 50px
+}
+
+.header{
+    padding-top: 20px
+}
