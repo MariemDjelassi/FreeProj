@@ -15,7 +15,7 @@ export class CompanyComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/landingPage/home']);
   }
 
 }

@@ -44,7 +44,7 @@ router.get('/readProjects', passport.authenticate('bearer', {session:false}), as
 })
 
 router.get('/readProjects/:idComp', passport.authenticate('bearer', {session:false}), async(req,res) => {
-    await Project.find({company_owner: req.params.idComp}).exec(async(err, proj) => {
+    await Project.find({company_owner: req.params.idComp}).populate({ path: 'applied_freelancers.id_freelancer' }).populate({ path: 'company_owner' }).exec(async(err, proj) => {
         if (err) {
             res.send(err);
         }

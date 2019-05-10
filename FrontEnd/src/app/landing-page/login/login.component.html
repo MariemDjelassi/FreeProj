@@ -1,0 +1,110 @@
+<section class="theme-layout">
+  <div class="block no-padding  gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="inner2">
+            <div class="inner-title2">
+              <h3>Login</h3>
+              <span>Keep up to date with the latest news</span>
+            </div>
+            <div class="page-breacrumbs">
+              <ul class="breadcrumbs">
+                <li><a [routerLink]="['/landingPage/home']">Home</a></li>
+                <li><a [routerLink]="['/landingPage/login']" routerLinkActive="router-link-active">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="block remove-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="account-popup-area signin-popup-box static">
+            <div class="account-popup">
+              <form [formGroup]="loginForm">
+                <div class="cfield form-group">
+                  <input type="email" class="form-control" formControlName="email" placeholder="Email Address" />
+                  <i class="la la-user"></i>
+                </div>
+                <div class="cfield form-group">
+                  <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                  <i class="la la-key"></i>
+                </div>
+                <!-- <p class="remember-label">
+                  <input type="checkbox" name="cb" id="cb1"><label for="cb1">Remember me</label>
+                </p> -->
+                <a href="javascript:void(0)" title="">Forgot Password?</a>
+                <button type="submit" (click)="login(loginForm)">Login</button>
+              </form>
+              <div class="extra-login">
+                <span>Or</span>
+                <div class="login-social">
+                  <a class="fb-login" href="javascript:void(0)" title=""><i class="fa fa-facebook"></i></a>
+                  <a class="tw-login" href="javascript:void(0)" title=""><i class="fa fa-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-toolbar>
+  <span>LOGIN</span>
+</mat-toolbar>
+<mat-card class="my-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="my-form">
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" name="email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" name="password">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <input type="email" class="form-control" formControlName="email" placeholder="Tape your mail address...">
+          <br>
+          <input type="password" class="form-control" formControlName="password" placeholder="Tape your password...">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="login(loginForm)">Login</button>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+<br> -->

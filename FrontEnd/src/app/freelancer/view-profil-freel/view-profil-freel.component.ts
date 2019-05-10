@@ -1,6 +1,7 @@
 import { FreelancerApiService } from './../../services/freelancer-api.service';
-import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-view-profil-freel',

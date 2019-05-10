@@ -4,7 +4,7 @@ var Company = require('../../models/companySchema');
 
 // passport.authenticate('bearer', {session: false}),
 
-router.get('/getCompany/:idCompany', async(req,res) => {
+router.get('/getCompany/:idCompany', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Company.findById(req.params.idCompany).exec(function(err,company) {
         if (err) {
             res.send(err);
@@ -13,7 +13,7 @@ router.get('/getCompany/:idCompany', async(req,res) => {
     });
 })
 
-router.get('/getCompanies', async(req,res) => {
+router.get('/getCompanies', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Company.find().exec(function(err,company) {
         if (err) {
             res.send(err);
@@ -22,7 +22,7 @@ router.get('/getCompanies', async(req,res) => {
     });
 })
 
-router.post('/updateCompany/:idCompany', async(req,res) => {
+router.post('/updateCompany/:idCompany', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Company.findByIdAndUpdate(req.params.idCompany, {
         name: req.body.name || "Untitled Company",
         address: req.body.address,

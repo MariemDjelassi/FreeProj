@@ -16,7 +16,7 @@ export class FreelancerApiService {
   }
 
   upDateFreel(idFreel) {
-    return this.http.post(`http://localhost:3000/Freelancer/updateFreelancer/${idFreel}`, {headers: this.Header});
+    return this.http.post(`http://localhost:3000/Freelancer/updateFreelancer/${idFreel}`, null, {headers: this.Header});
   }
 
 }

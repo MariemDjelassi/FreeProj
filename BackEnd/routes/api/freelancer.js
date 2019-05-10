@@ -3,17 +3,17 @@ var passport = require('passport');
 var Freelancer = require('../../models/freelancerSchema');
 
 // get projects applied from freels schema
-router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
-    await Freelancer.findOne({_id:req.params.idFreel}).populate('projects').exec((err,Freel) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send(Freel);
-    });
-})
+// router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
+//     await Freelancer.findOne({_id:req.params.idFreel}).populate('projects').exec((err,Freel) => {
+//         if (err) {
+//             res.send(err);
+//         }
+//         res.send(Freel);
+//     });
+// })
 
 router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
-    await Freelancer.findById(req.params.idFreel).exec((err,Freel) => {
+    await Freelancer.findById(req.params.idFreel).populate({ path: 'projects' }).exec((err,Freel) => {
         if (err) {
             res.send(err);
         }

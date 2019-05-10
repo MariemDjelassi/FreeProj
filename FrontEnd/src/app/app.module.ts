@@ -6,15 +6,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterCompanyComponent } from './register-company/register-company.component';
-import { RegisterFreelancerComponent } from './register-freelancer/register-freelancer.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './landing-page/navbar/navbar.component';
+import { LoginComponent } from './landing-page/login/login.component';
+import { HomeComponent } from './landing-page/home/home.component';
+import { RegisterCompanyComponent } from './landing-page/register-company/register-company.component';
+import { RegisterFreelancerComponent } from './landing-page/register-freelancer/register-freelancer.component';
+import { FooterComponent } from './landing-page/footer/footer.component';
 import { CompanyComponent } from './company/company.component';
 import { AddProjectComponent } from './company/add-project/add-project.component';
 import { FreelancerComponent } from './freelancer/freelancer.component';
@@ -30,6 +31,13 @@ import { DetailsProjectComponent } from './freelancer/details-project/details-pr
 import { ViewProfilCompComponent } from './company/view-profil-comp/view-profil-comp.component';
 import { ViewProfilFreelComponent } from './freelancer/view-profil-freel/view-profil-freel.component';
 import { ListOffersComponent } from './company/list-offers/list-offers.component';
+import { ChatComponent } from './chat/chat.component';
+import { RegisterComponent } from './landing-page/register/register.component';
+import { ListFreelProjComponent } from './freelancer/list-freel-proj/list-freel-proj.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -55,7 +63,11 @@ import { ListOffersComponent } from './company/list-offers/list-offers.component
     ViewProfilCompComponent,
     DetailsProjectComponent,
     ChangePwrdCompComponent,
-    ListOffersComponent
+    ListOffersComponent,
+    ChatComponent,
+    RegisterComponent,
+    ListFreelProjComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +77,8 @@ import { ListOffersComponent } from './company/list-offers/list-offers.component
     JwtModule,
     MaterialModule,
     NgbModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    SocketIoModule.forRoot(config)
   ],
   exports: [DeleteDialogComponent, EditDialogComponent],
   entryComponents: [DeleteDialogComponent, EditDialogComponent],

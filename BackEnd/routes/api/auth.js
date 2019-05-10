@@ -5,6 +5,7 @@ var User = require('../../models/userSchema');
 var Freelancer = require('../../models/freelancerSchema');
 var Company = require('../../models/companySchema');
 
+
 router.post('/login', async(req,res) => {
     let user = await User.findOne({email: req.body.email});
     if(!user) {

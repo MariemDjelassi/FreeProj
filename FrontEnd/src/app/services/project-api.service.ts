@@ -45,12 +45,8 @@ export class ProjectApiService {
     return this.http.post(`http://localhost:3000/Project/applyOffer/${idProj}/${idFreel}`, body, {headers: this.Header});
   }
 
-  // getOffers(idProj) {
-  //   return this.http.get(`http://localhost:3000/Project/getFreels/${idProj}`, {headers: this.Header});
-  // }
-
   acceptOffer(idProj, idFreel) {
-    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idProj}/${idFreel}`, {headers: this.Header});
+    return this.http.post(`http://localhost:3000/Project/acceptOffer/${idProj}/${idFreel}`, null, {headers: this.Header});
   }
 
   // changeStatusToInProgress(idProj) {

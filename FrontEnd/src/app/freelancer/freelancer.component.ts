@@ -15,7 +15,7 @@ export class FreelancerComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('token');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/landingPage/home']);
   }
 
 }

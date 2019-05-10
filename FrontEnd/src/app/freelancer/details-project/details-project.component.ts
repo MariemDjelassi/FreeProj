@@ -45,27 +45,33 @@ export class DetailsProjectComponent implements OnInit {
     this.exist = false;
     const idP = this.idProj;
     const idF = this.connectedFreel.idFreel;
-    // tslint:disable-next-line:no-shadowed-variable
-    this.project.forEach(element => {
-      element.applied_freelancers.forEach(element2 => {
-        if (idF === element2.id_freelancer._id) {
-          this.exist = true;
+    this.project.forEach(elmt => {
+      console.log(elmt);
+      if (elmt.status !== 'waiting') {
+        alert('you can\'t apply for this project');
+      } else {
+      // tslint:disable-next-line:no-shadowed-variable
+        this.project.forEach(element => {
+          element.applied_freelancers.forEach(element2 => {
+            if (idF === element2.id_freelancer._id) {
+              this.exist = true;
+            }
+          });
+        });
+        if (this.exist) {
+          console.log('you have already apply for this project.');
+          alert('you have already apply for this project.');
+        } else {
+          this.projService.applyOffer(idP, idF, form.value).subscribe(res => {
+            console.log(res);
+          });
+          this.projService.getOneProject(this.idProj).subscribe((resp: any) => {
+            this.project = [resp];
+            console.log(this.project);
+          });
         }
-      });
+      }
     });
-    if (this.exist) {
-      console.log('you have already apply for this project.');
-      alert('you have already apply for this project.');
-    } else {
-      this.projService.applyOffer(idP, idF, form.value).subscribe(res => {
-        console.log(res);
-      });
-      this.projService.getOneProject(this.idProj).subscribe((res: any) => {
-        this.project = [res];
-        console.log(this.project);
-      });
-    }
-    // console.log(this.project);
   }
 
 }

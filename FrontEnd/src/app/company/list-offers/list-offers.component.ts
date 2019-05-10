@@ -1,62 +1,115 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './../../services/auth.service';
 import { ProjectApiService } from './../../services/project-api.service';
-// import { MatTableDataSource } from '@angular/material';
-// import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FreelancerApiService } from './../../services/freelancer-api.service';
+import { MailApiService } from './../../services/mail-api.service';
+import { ChatApiService } from './../../services/chat-api.service';
+import { Socket } from 'ngx-socket-io';
+
 
 @Component({
   selector: 'app-list-offers',
   templateUrl: './list-offers.component.html',
   styleUrls: ['./list-offers.component.css'],
-  // animations: [
-  //   trigger('detailExpand', [
-  //     state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-  //     state('expanded', style({height: '*'})),
-  //     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-  //   ]),
-  // ]
 })
-
-// export interface PeriodicElement {
-//   title: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-//   description: string;
-// }
 
 export class ListOffersComponent implements OnInit {
 
-  // expandedElement: PeriodicElement | null;
-  // dataSource: any;
-  // columnsToDisplay = ['title', 'weight', 'symbol', 'position'];
+  panelOpenState = false;
 
   connectedComp: any;
   projects: any;
   offers: any;
+  mail: any;
+  freels: any;
+  listeMessages: any;
+  conversation: any;
   idComp: any;
-  idProj: any;
+  idFreel: any;
+  proj: any;
+  chatForm: FormGroup;
 
-  constructor( private dataRoute: ActivatedRoute, private projService: ProjectApiService, private auth: AuthService ) {
-    this.connectedComp = this.auth.connectedUser;
+  constructor(private projService: ProjectApiService, private auth: AuthService, private freelService: FreelancerApiService,
+              private modalService: NgbModal, private mailService: MailApiService, private chatService: ChatApiService,
+              private socket: Socket) {
     // this.idProj = this.dataRoute.snapshot.params.id;
+    this.connectedComp = this.auth.connectedUser;
+    this.chatForm = new FormGroup({
+      content: new FormControl(''),
+      user: new FormControl('')
+    });
+    this.listeMessages = [];
   }
 
   ngOnInit() {
     this.idComp = this.connectedComp.idComp;
-    this.projService.getAllProjByComp(this.idComp).subscribe((res: any) => {
-      this.projects = res;
+    this.chatForm = new FormGroup({
+      content: new FormControl(''),
+      user: new FormControl(this.idComp),
+    });
+    this.projService.getAllProjByComp(this.idComp).subscribe((result: any) => {
+      this.projects = result;
       console.log(this.projects);
-      // this.dataSource = new MatTableDataSource(this.projects);
     });
   }
 
+  openLg(content, idF) {
+    this.modalService.open(content, { size: 'lg' });
+    console.log(idF);
+    this.freelService.getFreelById(idF).subscribe((res: any) => {
+      this.freels = [res];
+      console.log(this.freels);
+    });
+    this.socket.on('newMessageSended', () => {
+      // this.clickFreel(idF);
+      console.log('hahahaha');
+      this.idFreel = idF;
+      this.chatService.getChat(this.connectedComp.idComp, this.idFreel).subscribe( (res: any) => {
+        console.log(res);
+        this.conversation = res._id;
+        this.listeMessages = res.messages;
+      });
+    });
+  }
+
+  // clickFreel(idF) {
+  //   this.idFreel = idF;
+  //   this.chatService.getChat(this.connectedComp.idComp, this.idFreel).subscribe( (res: any) => {
+  //     console.log(res);
+  //     this.conversation = res._id;
+  //     this.listeMessages = res.messages;
+  //   });
+  // }
+
+  sendMessage(form) {
+    const idC = this.connectedComp.idComp;
+    console.log('clicked');
+    this.chatService.sendMessages(this.conversation, form.value).subscribe();
+  }
+
   accept_Offer(idP, idF) {
-    // idP = this.idProj;
-    this.projService.acceptOffer(idP, idF).subscribe((res: any) => {
-      this.offers = res;
-      console.log(this.offers);
+    const idC = this.connectedComp.idComp;
+    this.projService.getOneProject(idP).subscribe((resp: any) => {
+      this.proj = [resp];
+      console.log(this.proj);
+      this.proj.forEach(element => {
+        console.log(element);
+        if (element.status === 'waiting') {
+          this.projService.acceptOffer(idP, idF).subscribe((res: any) => {
+            this.offers = res;
+            console.log(this.offers);
+          });
+          this.mailService.sendMail(idC, idF).subscribe((rslt: any) => {
+            this.mail = rslt;
+            console.log(this.mail);
+          });
+        } else {
+          alert('you can\'t accept this project');
+        }
+      });
     });
   }
 

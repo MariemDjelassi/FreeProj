@@ -4,6 +4,9 @@ import { MatMenuModule, MatNativeDateModule, MatIconModule, MatCheckboxModule} f
 import { MatCardModule, MatRadioModule, MatListModule, MatToolbarModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule, MatChipsModule } from '@angular/material';
+import { MatStepperModule, MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   exports:
@@ -23,7 +26,12 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatToolbarModule,
     MatDatepickerModule,
-    MatTableModule
-    ]
+    MatTableModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatStepperModule,
+    MatSnackBarModule,
+    MatChipsModule
+  ]
 })
 export class MaterialModule {}

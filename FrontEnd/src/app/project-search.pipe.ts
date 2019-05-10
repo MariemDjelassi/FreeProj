@@ -9,9 +9,12 @@ export class ProjectSearchPipe implements PipeTransform {
     if (searchText === undefined) {
       return projects;
     } else {
-        return projects.filter(project => {
-          return project.toLowerCase().includes(searchText.toLowerCase());
-      });
+      return projects.filter(project =>
+        project.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        project.titleProject.toLowerCase().includes(searchText.toLowerCase()) ||
+        project.skill.toLowerCase().includes(searchText.toLowerCase()) ||
+        project.length.toLowerCase().includes(searchText.toLowerCase())
+      );
     }
 
     // if (!filter) {
