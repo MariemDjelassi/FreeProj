@@ -68,8 +68,7 @@
     <form [formGroup]="FreelForm4">
       <ng-template matStepLabel>Step 4/6</ng-template>
       <div>
-        <input type="file" accept="image/x-png,image/gif,image/jpeg" formControlName="profileImage"
-          (change)="filechangeEvent($event);uploadFile($event)" id="file" />
+        <input type="file" formControlName="profileImage" (change)="filechangeEvent($event)"/>
       </div>
       <br>
       <div>

@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var passport = require('passport');
 var Company = require('../../models/companySchema');
+var upload = require('../uploads/uploadMiddleware');
 
 // passport.authenticate('bearer', {session: false}),
 
@@ -22,7 +23,8 @@ router.get('/getCompanies', passport.authenticate('bearer', {session: false}), a
     });
 })
 
-router.post('/updateCompany/:idCompany', passport.authenticate('bearer', {session: false}), async(req,res) => {
+router.post('/updateCompany/:idCompany', upload.single('logo'), passport.authenticate('bearer', {session: false}), async(req,res) => {
+    req.body.logo = req.file.filename;
     await Company.findByIdAndUpdate(req.params.idCompany, {
         name: req.body.name || "Untitled Company",
         address: req.body.address,

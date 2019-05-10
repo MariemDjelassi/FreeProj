@@ -38,4 +38,10 @@ export class CompanyApiService {
     return this.http.get(`http://localhost:3000/Project/getFreels/${idProj}`, {headers: this.Header});
   }
 
+  UploadImg(img) {
+    // let header = new HttpHeaders().append('Authorization','Bearer ' + localStorage.getItem('token'));
+    // header.set('Content-Type', 'form-data');
+    return this.http.post('http://localhost:3000/Users/upload', img);
+  }
+
 }

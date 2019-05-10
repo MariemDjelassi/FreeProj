@@ -34,8 +34,8 @@ export class RegisterFreelancerComponent implements OnInit {
   FreelForm6: FormGroup;
 
   fakePath: any;
-  fileUpload: any;
   imageSrc: any;
+  fileSelected: File = null;
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -119,7 +119,8 @@ export class RegisterFreelancerComponent implements OnInit {
       phone : this.FreelForm3.value.phone,
       address : this.FreelForm3.value.address,
       role : this.FreelForm4.value.role,
-      profileImage : this.FreelForm4.value.profileImage,
+      // profileImage : this.FreelForm4.value.profileImage,
+      profileImage : this.fileSelected.name,
       skillsArray : this.FreelForm5.value.skillsArray,
       languagesArray : this.FreelForm5.value.languagesArray,
       linkedIn_link : this.FreelForm6.value.linkedIn_link,
@@ -130,9 +131,16 @@ export class RegisterFreelancerComponent implements OnInit {
     };
     console.log(freel);
     this.service.registerApiFreel(freel).subscribe((res) => {
+      const file = new FormData();
+      file.append('profileImage', this.fileSelected);
+      this.service.UploadImg(file).subscribe(img => console.log(img));
       this.openSnackBar('Account has created with success', 'close');
       this.router.navigateByUrl('/landingPage/login');
     });
+  }
+
+  filechangeEvent(fileInput: any) {
+    this.fileSelected = fileInput.target.files[0];
   }
 
   openSnackBar(message: string, action: string) {
@@ -182,39 +190,26 @@ export class RegisterFreelancerComponent implements OnInit {
     }
   }
 
-  // selectedFile(event) {
-  //   this.selectedImage = event.target.files[0];
+  // removeFakePathUrl(f) {
+  //   this.fakePath = f.slice(12, f.length);
+  //   return this.fakePath;
   // }
 
-  // readURL(event): void {
+  // uploadFile(event) {
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
   //   if (event.target.files && event.target.files[0]) {
-  //     const file = event.target.files[0];
-  //     const reader = new FileReader();
   //     reader.onload = e => this.imageSrc = reader.result;
   //     reader.readAsDataURL(file);
+  //     // this.removeFakePathUrl(file);
+  //     this.service.UploadImg(file).subscribe();
   //   }
+  //   // const formData = new FormData();
+  //   // formData.append('file', this.fileData);
+  //   // this.service.UploadImg(formData).subscribe(res => {
+  //   //   console.log(res);
+  //   // });
   // }
-
-  removeFakePathUrl(f) {
-    this.fakePath = f.slice(12, f.length);
-    return this.fakePath;
-  }
-
-  uploadFile(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    if (event.target.files && event.target.files[0]) {
-      reader.onload = e => this.imageSrc = reader.result;
-      reader.readAsDataURL(file);
-    }
-    this.service.UploadImg(file).subscribe(res => {
-    });
-  }
-
-  filechangeEvent(fileInput: any) {
-    this.fileUpload = fileInput.target.files[0];
-  }
-
 
   // object() {
   //   const aa = {

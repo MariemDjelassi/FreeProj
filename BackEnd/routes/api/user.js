@@ -1,21 +1,47 @@
 var router = require('express').Router();
 var bcrypt = require('bcrypt');
-var upload = require('../uploads/uploadMiddleware');
 var User = require('../../models/userSchema');
 var Freelancer = require('../../models/freelancerSchema');
 var Company = require('../../models/companySchema');
+var multer = require('multer');
 
-router.post('/upload', upload.single('file'), function (req, res, next) {
-    res.send(req.file)
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname );
+    }
 });
 
-router.post('/register/freelancer', upload.single('file') , async(req,res) => {
+var upload = multer({ storage: storage });
+
+router.post('/upload', upload.single('file'), function (req, res, next) {
+    if (!req.file) {
+        console.log("No file received");
+        return res.send({
+          success: false
+        });
+    } else {
+        console.log('file received');
+        return res.send({
+          success: true
+        })
+    }
+});
+
+// router.get('/getContenue/:name',  function (req, res, next) {
+//     res.sendFile('C:/Users/houni/OneDrive/Bureau/Formation/Niveau4/Projet/uploads/' + req.params.name);
+// })
+
+router.post('/register/freelancer', upload.single('profileImage'), async(req,res) => {
     // Check if this user already exisits
     let exist = await User.findOne({ email: req.body.email });
     if (exist) {
         return res.send('That user already exist!');
     } else {
         // Insert the new user if they do not exist yet
+        // req.body.profileImage = req.file.filename;
         freelancer = new Freelancer(req.body);
         user = new User(req.body);
         const salt = await bcrypt.genSalt(10);
@@ -30,13 +56,14 @@ router.post('/register/freelancer', upload.single('file') , async(req,res) => {
     }
 })
 
-router.post('/register/company', async(req,res) => {
+router.post('/register/company', upload.single('logo'), async(req,res) => {
     // Check if this user already exisits
     let exist = await User.findOne({ email: req.body.email });
     if (exist) {
         return res.send('That user already exist!');
     } else {
         // Insert the new user if they do not exist yet
+        req.body.logo = req.file.filename;
         company = new Company(req.body);
         user = new User(req.body);
         const salt = await bcrypt.genSalt(10);
