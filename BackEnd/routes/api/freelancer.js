@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var passport = require('passport');
 var Freelancer = require('../../models/freelancerSchema');
-var upload = require('../uploads/uploadMiddleware');
+
 
 router.get('/getFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
     await Freelancer.findById(req.params.idFreel).populate({ path: 'projects' }).exec((err,Freel) => {
@@ -21,7 +21,7 @@ router.get('/getFreelancers', passport.authenticate('bearer', {session: false}),
     });
 })
 
-router.post('/updateFreelancer/:idFreel', upload.single('profileImage'), passport.authenticate('bearer', {session: false}), async(req,res) => {
+router.post('/updateFreelancer/:idFreel', passport.authenticate('bearer', {session: false}), async(req,res) => {
     req.body.profileImage = req.file.filename;
     await Freelancer.findByIdAndUpdate(req.params.idFreel, {
         firstName: req.body.firstName,

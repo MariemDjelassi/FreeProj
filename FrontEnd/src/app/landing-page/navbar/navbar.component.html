@@ -1,4 +1,155 @@
-<mat-toolbar color="primary">
+<!-- <div class="responsive-header">
+   <div class="responsive-menubar">
+      <div class="res-logo"><a routerLink="/landingPage/home"><img src="./../../assets/images/resource/logo4.png" /></a>
+      </div>
+      <div class="menu-resaction">
+         <div class="res-openmenu">
+            <img src="./../../assets/images/icon.png" /> Menu
+         </div>
+         <div class="res-closemenu">
+            <img src="./../../assets/images/icon2.png" /> Close
+         </div>
+      </div>
+   </div>
+   <div class="responsive-opensec">
+      <div class="btn-extars">
+         <a routerLink="" class="post-job-btn"><i class="la la-plus"></i>Post Project</a>
+         <ul class="account-btns">
+            <li class="signup-popup"><a routerLink="/landingPage/register"><i class="la la-key"></i> Sign Up</a></li>
+            <li class="signin-popup"><a routerLink="/landingPage/login"><i class="la la-external-link-square"></i>
+                  Login</a></li>
+         </ul>
+      </div>
+      <form class="res-search">
+         <input type="text" placeholder="Project skills" />
+         <button type="submit"><i class="la la-search"></i></button>
+      </form>
+      <div class="responsivemenu">
+         <ul>
+            <li class="menu-item-has-children">
+               <a>Pages</a>
+               <ul>
+                  <li><a routerLink="">About Us</a></li>
+                  <li><a routerLink="">Contact Us</a></li>
+                  <li><a routerLink="">Pricing Plans</a></li>
+                  <li><a routerLink="">Terms & Condition</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div> -->
+
+<!-- <nav class="stick-top forsticky">
+   <div class="menu-sec">
+      <div class="container">
+         <div class="logo">
+            <a routerLink="/landingPage/home"><img class="hidesticky" src="./../../assets/images/resource/logo4.png" />
+               <img class="showsticky" src="./../../assets/images/resource/logo10.png" /></a>
+         </div>
+         <div class="btn-extars">
+            <a class="post-job-btn"><i class="la la-plus"></i>Post Projects</a>
+            <ul class="account-btns">
+               <li class="signup-popup"><a routerLink="/landingPage/register"><i class="la la-key"></i> Sign Up</a></li>
+               <li class="signin-popup"><a routerLink="/landingPage/login"><i class="la la-external-link-square"></i>
+                     Login</a></li>
+            </ul>
+         </div>
+         <nav>
+            <ul>
+               <li class="menu-item-has-children">
+                  <a>Home</a>
+                  <ul>
+                     <li><a routerLink="">About Us</a></li>
+                     <li><a routerLink="">Contact Us</a></li>
+                     <li><a routerLink="">Pricing Plans</a></li>
+                     <li><a routerLink="">Terms & Condition</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</nav> -->
+
+<div class="responsive-header three">
+   <div class="responsive-menubar">
+      <div class="res-logo">
+         <a routerLink="/landingPage/home">
+            <img src="./../../assets/images/resource/logo4.png" />
+         </a>
+      </div>
+      <div class="menu-resaction">
+         <div class="res-openmenu">
+            <img src="./../../assets/images/icon5.png" />Menu</div>
+         <div class="res-closemenu">
+            <img src="./../../assets/images/icon6.png" />Close</div>
+      </div>
+   </div>
+   <div class="responsive-opensec">
+      <div class="btn-extars">
+         <a class="post-job-btn"><i class="la la-plus"></i>Post Projects</a>
+         <ul class="account-btns">
+            <li class="signup-popup"><a (click)="openRegister()"><i class="la la-key"></i>Sign Up</a></li>
+            <li class="signin-popup"><a (click)="openLogin()"><i
+                     class="la la-external-link-square"></i>Login</a></li>
+         </ul>
+      </div>
+      <form class="res-search">
+         <input type="text" placeholder="Project skills" />
+         <button type="submit"><i class="la la-search"></i></button>
+      </form>
+      <div class="responsivemenu">
+         <ul>
+            <li class="menu-item-has-children">
+               <a>Home</a>
+               <ul>
+                  <li><a>About Us</a></li>
+                  <li><a>Contact Us</a></li>
+                  <li><a>Pricing Plans</a></li>
+                  <li><a>Terms & Condition</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+
+<nav class="stick-top forsticky">
+   <div class="menu-sec">
+      <div class="container">
+         <div class="logo">
+            <a routerLink="/landingPage/home"><img src="./../../assets/images/resource/logo4.png" /></a>
+         </div>
+         <div class="btn-extars">
+            <a class="post-job-btn"><i class="la la-plus"></i>Post Projects</a>
+            <ul class="account-btns">
+               <li class="signup-popup"><a (click)="openRegister()"><i class="la la-key"></i> Sign Up</a></li>
+               <li class="signin-popup"><a (click)="openLogin()">
+                     <!-- routerLink="/landingPage/login" -->
+                     <!-- routerLink="/landingPage/register" -->
+                     <i class="la la-external-link-square"></i>
+                     Login</a></li>
+            </ul>
+         </div>
+         <nav>
+            <ul>
+               <li class="menu-item-has-children">
+                  <a>Home</a>
+                  <ul>
+                     <li><a>About Us</a></li>
+                     <li><a>Contact Us</a></li>
+                     <li><a>Pricing Plans</a></li>
+                     <li><a>Terms & Condition</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</nav>
+
+<!-- <mat-toolbar style="background-color: transparent">
    <mat-toolbar-row class="hgt">
       <span>
          <div class="res-logo">
@@ -8,11 +159,11 @@
          </div>
       </span>
       <span class="spacer"></span>
-      <a mat-button routerLink="/landingPage/register">REGISTER</a>
-      <a mat-button routerLink="/landingPage/login">LOGIN</a>
-      <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <a routerLink="/landingPage/register" class="col">REGISTER</a>
+      <a routerLink="/landingPage/login">LOGIN</a>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
       <mat-menu #menu="matMenu">
          <button mat-menu-item routerLink='/landingPage/chat'>Chat</button>
-      </mat-menu> -->
+      </mat-menu>
    </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->

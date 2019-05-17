@@ -1,0 +1,17 @@
+.myCard {
+    height: 220px;
+}
+
+.title {
+    color: #0f36a5;
+}
+
+.btn {
+    background-color: #0f36a5;
+    border: 0px;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #fb236a;
+}

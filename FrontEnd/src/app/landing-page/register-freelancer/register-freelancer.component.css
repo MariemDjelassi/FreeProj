@@ -1,9 +1,31 @@
 .my-form{
     min-width: 150px;
     max-width: 500px;
-    width: 100%;
+    width: 50%;
 }
    
 .full-width {
     width: 100%;
+}
+
+.card {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bgcol {
+    background-color: grey;
+}
+
+.example-chip-list {
+    width: 100%;
+}
+
+.position {
+    float: left;
+}
+.btnImg {
+    margin-right: 50px;
 }

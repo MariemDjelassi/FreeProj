@@ -9,6 +9,7 @@ export class UserApiService {
   constructor( private http: HttpClient ) { }
 
   registerApiComp(user) {
+    console.log(user);
     return this.http.post('http://localhost:3000/Users/register/company', user);
   }
 
@@ -17,9 +18,7 @@ export class UserApiService {
   }
 
   UploadImg(img) {
-    // let header = new HttpHeaders().append('Authorization','Bearer ' + localStorage.getItem('token'));
-    // header.set('Content-Type', 'form-data');
-    return this.http.post('http://localhost:3000/Users/upload', img);
+    return this.http.post('http://localhost:3000/Upload/upload', img);
   }
 
   loginUser(user) {

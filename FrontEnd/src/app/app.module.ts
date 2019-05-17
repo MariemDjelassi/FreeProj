@@ -80,8 +80,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     NgbModule.forRoot(),
     SocketIoModule.forRoot(config)
   ],
-  exports: [DeleteDialogComponent, EditDialogComponent],
-  entryComponents: [DeleteDialogComponent, EditDialogComponent],
+  exports: [DeleteDialogComponent, EditDialogComponent, LoginComponent, RegisterCompanyComponent,
+            RegisterComponent, RegisterFreelancerComponent],
+  entryComponents: [DeleteDialogComponent, EditDialogComponent, LoginComponent, RegisterCompanyComponent,
+                    RegisterFreelancerComponent, RegisterComponent],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })

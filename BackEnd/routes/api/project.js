@@ -3,14 +3,10 @@ var passport = require('passport');
 var Company = require('../../models/companySchema');
 var Freelancer = require('../../models/freelancerSchema');
 var Project = require('../../models/projectSchema');
-var upload = require('../uploads/uploadMiddleware');
-var mongoose = require('mongoose');
 
-router.post('/upload', upload.single('file'), function (req, res, next) {
-    res.send(req.file)
-})
+
 // passport.authenticate('bearer', {session:false}),
-router.post('/createProject/:idCompany', upload.single('file'), passport.authenticate('bearer', {session:false}), async(req,res) => {
+router.post('/createProject/:idCompany', passport.authenticate('bearer', {session:false}), async(req,res) => {
     var project = new Project(req.body);
     project['company_owner'] = req.params.idCompany; // affect user to project
     await project.save(async(err,proj) => {

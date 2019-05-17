@@ -267,7 +267,7 @@ iframe{
 }
 i{font-style:italic}
 /* {! float:left;/*! height:auto } */
-:-webkit-input-placeholder{opacity:1}
+/* :-webkit-input-placeholder{opacity:1}
 :-moz-placeholder{opacity:1}
 :-ms-input-placeholder{opacity:1}
 input[type="text"],
@@ -281,12 +281,12 @@ input[type="email"], textarea {
     margin-bottom: 20px;
     padding: 19px 28px;
     width: 100%;
-}
-textarea{
+} */
+/* textarea{
     max-width:100%;
     min-height:200px;
     padding: 19px 28px;
-}
+} */
 strong{font-weight:800}
 button{
     float:right;
@@ -817,7 +817,7 @@ label::after {
 
 /* Account Popup Area */
 .account-popup-area {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     width: 100%;
@@ -825,13 +825,13 @@ label::after {
     background: rgba(20,31,114,0.6);
     opacity: 1;
     z-index: 99;
-    overflow-Y: scroll;
+    /* overflow-Y: scroll; */
     display: none;
 }
 .account-popup {
     position: relative;
     float: left;
-    width: 460px;
+    width: 250px;
     background: #ffffff;
     z-index: 1;
     
@@ -924,7 +924,7 @@ label::after {
     padding: 16px 45px 16px 15px;
 }
 .account-popup > form .cfield i {
-    position: absolute;
+    position: relative;
     right: 0;
     top: 15px;
     right: 20px;
@@ -1118,37 +1118,40 @@ label::after {
 
 .job-field input {
     float: left;
-    width: 100%;
+    width: 80%;
     background: no-repeat;
     border: none;
     font-size: 13px;
     color: #888888;
     margin: 0;
-    padding: 0 70px 0 30px;
-    height: 61px;
-    line-height: 61px;
+    /* padding: 0 70px 0 30px; */
+    height: 50px;
+    /* line-height: 61px; */
 
     background-color: #FFF;
 
-     -webkit-border-radius: 8px;
+     /* -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
-    border-radius: 8px;
+    border-radius: 8px; */
 }
-
-.job-field input::-webkit-input-placeholder { /* Chrome */
+/* Chrome */
+/* .job-field input::-webkit-input-placeholder { 
   color: #888888;font-size: 13px
-}
-.job-field input:-ms-input-placeholder { /* IE 10+ */
+} */
+ /* IE 10+ */
+/* .job-field input:-ms-input-placeholder {
   color: #888888;font-size: 13px
-}
-.job-field input::-moz-placeholder { /* Firefox 19+ */
+} */
+/* Firefox 19+ */
+/* .job-field input::-moz-placeholder { 
   color: #888888;font-size: 13px
-}
-.job-field input:-moz-placeholder { /* Firefox 4 - 18 */
+} */
+/* Firefox 4 - 18 */
+/* .job-field input:-moz-placeholder { 
   color: #888888;font-size: 13px
-}
+} */
 
 .job-field i {
     position: absolute;
@@ -10313,8 +10316,8 @@ header.white {
 
 }
 .account-popup-area.static {
-    position: static;
-    float: left;
+    position: relative;
+    /* float: center; */
     width: 100%;
     display: block !important;;
     overflow: auto;
@@ -10322,13 +10325,15 @@ header.white {
     z-index: 1;
 }
 .account-popup-area.static .account-popup {
-    margin-top: 0;
-    width: 430px;
+    margin-left: 0px;
+    width: 250px;
+    height: 300px;
     padding: 0;
 }
 .account-popup-area.static .account-popup {
-    margin-top: 0;
-    width: 430px;
+    margin-left: 0px;
+    width: 250px;
+    height: 300px;
     padding: 0;
 }
 .account-popup-area.static .account-popup > span {

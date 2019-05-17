@@ -3,6 +3,9 @@ import { AuthService } from './../../services/auth.service';
 import { UserApiService } from './../../services/user-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NgbModal, NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(  private router: Router, private userService: UserApiService, private authService: AuthService) {
+  constructor(private router: Router, private userService: UserApiService, private authService: AuthService,
+              public dialogRef: MatDialogRef<LoginComponent>) {
+
     this.loginForm = new FormGroup ({
       email : new FormControl('', [Validators.required, Validators.email]),
       password : new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -40,6 +45,11 @@ export class LoginComponent implements OnInit {
         console.log('user invalide');
       }
     });
+    this.dialogRef.close();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

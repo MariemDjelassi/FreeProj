@@ -6,7 +6,7 @@ var companySchema = new mongoose.Schema({
     foundYear : Number,
     phone : Number, 
     logo : String,
-    size : {type : String, enum : ['[0..9]','[10..49]','[50..99]','+100']},
+    size : {type : String, enum : ['[0..9]','[10..49]','[50..99]','+100', '']},
     description : String,
     website : String,
     linkedIn : String,

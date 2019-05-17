@@ -9,6 +9,7 @@ var socketIO = require('socket.io');
 
 var login = require('./routes/api/auth');
 var register = require('./routes/api/user');
+var uploadApi = require('./routes/api/files');
 var CompApi = require('./routes/api/company');
 var FreelApi = require('./routes/api/freelancer');
 var ProjApi = require('./routes/api/project');
@@ -16,13 +17,15 @@ var MailApi = require('./routes/api/mail');
 var ChatApi = require('./routes/api/chat');
 
 var app = express();
-app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(cors());
+
 app.use('/Auth', login);
 app.use('/Users', register);
+app.use('/Upload', uploadApi);
 app.use('/Company', CompApi);
 app.use('/Freelancer', FreelApi);
 app.use('/Project', ProjApi);

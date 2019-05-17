@@ -1,175 +1,203 @@
-<mat-horizontal-stepper labelPosition="bottom" #stepper>
-  <mat-step [stepControl]="FreelForm1">
-    <form [formGroup]="FreelForm1">
-      <ng-template matStepLabel>Step 1/6</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="your mail" formControlName="email" required>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="your password" formControlName="password" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FreelForm2">
-    <form [formGroup]="FreelForm2">
-      <ng-template matStepLabel>Step 2/6</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="your first name" formControlName="firstName" required>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="your last name" formControlName="lastName" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-        <button mat-button matStepperPrevious>
-          <mat-icon>skip_previous</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FreelForm3" [optional]="isOptional">
-    <form [formGroup]="FreelForm3">
-      <ng-template matStepLabel>Step 3/6</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="your phone number" type="number" formControlName="phone">
-        <mat-icon>call</mat-icon>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="your address" formControlName="address">
-        <mat-icon> location_on</mat-icon>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="your birthdate" formControlName="birthDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-        <button mat-button matStepperPrevious>
-          <mat-icon>skip_previous</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FreelForm4" [optional]="isOptional">
-    <form [formGroup]="FreelForm4">
-      <ng-template matStepLabel>Step 4/6</ng-template>
-      <div>
-        <input type="file" formControlName="profileImage" (change)="filechangeEvent($event)"/>
-      </div>
-      <br>
-      <div>
-        <img style="height: 150px;" class="rounded float-left img-thumbnail"
-          [src]="imageSrc  || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'" />
-      </div>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-        <button mat-button matStepperPrevious>
-          <mat-icon>skip_previous</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FreelForm5" [optional]="isOptional">
-    <form [formGroup]="FreelForm5">
-      <ng-template matStepLabel>Step 5/6</ng-template>
-      <mat-form-field class="example-chip-list">
-        <mat-chip-list #chipList1>
-          <mat-chip *ngFor="let skill of skills" [selectable]="selectable" [removable]="removable"
-            (removed)="removeSkl(skill)">
-            {{skill.skill}}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="New skill..." [matChipInputFor]="chipList1"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addSkl($event)" formControlName="skillsArray">
-        </mat-chip-list>
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-chip-list">
-        <mat-chip-list #chipList2>
-          <mat-chip *ngFor="let language of languages" [selectable]="selectable" [removable]="removable"
-            (removed)="removeLgge(language)">
-            {{language.language}}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="New language..." [matChipInputFor]="chipList2"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addLgge($event)" formControlName="languagesArray">
-        </mat-chip-list>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-        <button mat-button matStepperPrevious>
-          <mat-icon>skip_previous</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FreelForm6" [optional]="isOptional">
-    <form [formGroup]="FreelForm6">
-      <ng-template matStepLabel>Step 6/6</ng-template>
-      <mat-form-field>
-        <mat-icon>facebook</mat-icon>
-        <input matInput placeholder="Facebook Link" formControlName="fb_link">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <mat-icon>twitter</mat-icon>
-        <input matInput placeholder="Twitter Link" formControlName="twitter_link">
+<div class="modal-header">
+    <h4 class="modal-title">Register As Freelancer</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onNoClick()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<mat-card class="card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="bgcol"><i class="fas fa-sign-in-alt fa-2x"></i></div> -->
+    <mat-card-title>Create Account</mat-card-title>
+    <mat-card-subtitle>As Freelancer Profil</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-horizontal-stepper labelPosition="bottom" #stepper>
+      <mat-step [stepControl]="FreelForm1">
+        <form class="my-form" [formGroup]="FreelForm1">
+          <ng-template matStepLabel>Step 1/6</ng-template>
+          <mat-form-field class="full-width">
+            <input matInput type="email" formControlName="email" placeholder="Enter your email" required>
+            <br>
+            <mat-error *ngIf="FreelForm1.controls['email'].hasError('required')">* You must enter a value</mat-error>
+            <mat-error *ngIf="FreelForm1.controls['email'].hasError('email')">* Not a valid email</mat-error>
+            <mat-error *ngIf="FreelForm1.controls['email'].hasError('pattern')">* Must be like : mail@mail.mail
+            </mat-error>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field class="full-width">
+            <input matInput type="password" minlength="8" formControlName="password" placeholder="Enter your password"
+              required>
+            <br>
+            <mat-error class="error-message" *ngIf="FreelForm1.controls['password'].hasError('required')">You must enter
+              a value</mat-error>
+            <mat-error *ngIf="FreelForm1.controls['password'].hasError('minlength')">* Must be at least 8 characters
+            </mat-error>
+            <mat-error *ngIf="FreelForm1.controls['password'].hasError('pattern')">* Must contain at least one
+              uppercase, one lowercase, and one number</mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="FreelForm2">
+        <form class="my-form" [formGroup]="FreelForm2">
+          <ng-template matStepLabel>Step 2/6</ng-template>
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Enter your first name" formControlName="firstName" minlength="3"
+              maxlength="25" required>
+            <br>
+            <mat-error *ngIf="FreelForm2.controls['firstName'].hasError('required')">* You must enter a value
+            </mat-error>
+            <mat-error *ngIf="FreelForm2.controls['firstName'].hasError('minlength')">* Must contain at least 3
+              characters</mat-error>
+            <mat-error *ngIf="FreelForm2.controls['firstName'].hasError('maxlength')">* Must contain at most 25
+              characters</mat-error>
+            <mat-error *ngIf="FreelForm2.controls['firstName'].hasError('pattern')">* First characters must be in
+              uppercase</mat-error>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Enter your last name" formControlName="lastName" minlength="3"
+              maxlength="25" required>
+            <br>
+            <mat-error *ngIf="FreelForm2.controls['lastName'].hasError('required')">* You must enter a value</mat-error>
+            <mat-error *ngIf="FreelForm2.controls['lastName'].hasError('minlength')">* Must contain at least 3
+              characters</mat-error>
+            <mat-error *ngIf="FreelForm2.controls['lastName'].hasError('maxlength')">* Must contain at most 25
+              characters</mat-error>
+            <mat-error *ngIf="FreelForm2.controls['lastName'].hasError('pattern')">* First characters must be in
+              uppercase</mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="FreelForm3" [optional]="isOptional">
+        <form class="my-form" [formGroup]="FreelForm3">
+          <ng-template matStepLabel>Step 3/6</ng-template>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your phone number" type="number" formControlName="phone">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your address" formControlName="address">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Enter your birthdate" formControlName="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="FreelForm4" [optional]="isOptional">
+        <form class="my-form" [formGroup]="FreelForm4">
+          <ng-template matStepLabel>Step 4/6</ng-template>
+          <div class="full-width">
+            <div class="position">
+              <!-- formControlName="profileImage" -->
+              <button mat-button class="btnImg" (click)="file.click()">Choose your picture profile</button>
+              <input #file hidden type="file" (change)="filechangeEvent($event);preview(file.files)"
+                formControlName="profileImage" />
+              <br><br>
+              <img style="height: 150px;width: 300px;" class="rounded float-left img-thumbnail"
+                [src]="imgURL || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'" />
+            </div>
+          </div>
+          <br><br>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="FreelForm5" [optional]="isOptional">
+        <form class="my-form" [formGroup]="FreelForm5">
+          <ng-template matStepLabel>Step 5/6</ng-template>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList1>
+              <mat-chip *ngFor="let skill of skills" [selectable]="selectable" [removable]="removable"
+                (removed)="removeSkl(skill)">
+                {{skill.skill}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Enter your skills" [matChipInputFor]="chipList1"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addSkl($event)" formControlName="skillsArray">
+            </mat-chip-list>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList2>
+              <mat-chip *ngFor="let language of languages" [selectable]="selectable" [removable]="removable"
+                (removed)="removeLgge(language)">
+                {{language.language}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Enter your languages" [matChipInputFor]="chipList2"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addLgge($event)" formControlName="languagesArray">
+            </mat-chip-list>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="FreelForm6" [optional]="isOptional">
+        <form class="my-form" [formGroup]="FreelForm6">
+          <ng-template matStepLabel>Step 6/6</ng-template>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your facebook link" formControlName="fb_link">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your twitter link" formControlName="twitter_link">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your linkedIn link" formControlName="linkedIn_link">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your github link" formControlName="gitHub_link">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your portfolio link" formControlName="portFolio_link">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel matStepperIcon="done">
+          <mat-icon>done_all</mat-icon>
+        </ng-template>
+        You are done.
+        <div>
+          <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+          <button mat-button type="submit" (click)="registerFreel()">Register</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
 
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="LinkedIn Link" formControlName="linkedIn_link">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="Github Link" formControlName="gitHub_link">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="Portfolio Link" formControlName="portFolio_link">
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>
-          <mat-icon>skip_next</mat-icon>
-        </button>
-        <button mat-button matStepperPrevious>
-          <mat-icon>skip_previous</mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel matStepperIcon="done">
-      <mat-icon>done_all</mat-icon>
-    </ng-template>
-    You are finished.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-      <button mat-button type="submit" (click)="registerFreel()">Register</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+<!-- <div class="scroll-top">
+  <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+</div> -->
 
 
 <!-- <div class="container">
@@ -178,20 +206,6 @@
     <div class="col-md-8">
       <form [formGroup]="registerFreelForm">
         <div class="form-group">
-          <input type="email" class="form-control" formControlName="email" placeholder="Email Address">
-          <input type="password" class="form-control" formControlName="password" placeholder="Password">
-          <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
-          <br>
-          <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
-          <br>
-
-          <br>
-          <input type="number" class="form-control" formControlName="phone" placeholder="Phone Number">
-          <br>
-          <input type="text" class="form-control" formControlName="address" placeholder="your address">
-          <br>
-          <input type="date" class="form-control" formControlName="birthDate" placeholder="Tape your birth date">
-          <br>
           <div formArrayName="skills" *ngFor="let skill of registerFreelForm.get('skills').controls; let i = index">
             <div [formGroupName]="i">
               <input type="text" class="form-control" formControlName="skill" placeholder="Tape your skill">
@@ -203,41 +217,7 @@
               </div>
             </div>
           </div>
-          <br>
-          <div formArrayName="languages"
-            *ngFor="let language of registerFreelForm.get('languages').controls; let ind = index">
-            <div [formGroupName]="ind">
-              <input type="text" class="form-control" formControlName="language" placeholder="Tape your language">
-              <div *ngIf="ind > 0">
-                <button type="submit" class="btn btn-primary" (click)="deleteLanguage(ind)">-</button>
-              </div>
-              <div *ngIf="ind === 0">
-                <button type="submit" class="btn btn-primary" (click)="addLanguage()">+</button>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="input-group">
-            <div class="file-path-wrapper">
-              <input type="file" accept="image/x-png,image/gif,image/jpeg" formControlName="profileImage"
-                (change)="filechangeEvent($event)" name="file" id="file" />
-              <label class="custom-file-label" for="file">Choose file</label>
-            </div>
-          </div>
-          <br>
-          <input type="text" class="form-control" formControlName="linkedIn_link" placeholder="link of your linked In">
-          <br>
-          <input type="text" class="form-control" formControlName="fb_link" placeholder="link of your facebook">
-          <br>
-          <input type="text" class="form-control" formControlName="twitter_link" placeholder="link of your twitter">
-          <br>
-          <input type="text" class="form-control" formControlName="gitHub_link" placeholder="link of your gitHub">
-          <br>
-          <input type="text" class="form-control" formControlName="portFolio_link" placeholder="link of your portfolio">
         </div>
-        <button type="submit" class="btn btn-primary"
-          (click)="registerComp(registerFreelForm);uploadFile()">Register</button>
-        &nbsp;
       </form>
     </div>
     <div class="col-md-1"></div>

@@ -1,0 +1,30 @@
+.mycard {
+    height: 210px;
+}
+.btn1 {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    /* margin-top: 100px; */
+    width: 210px;
+    background-color: #7dc246;
+}
+
+.btn2 {
+    margin-top: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: #7dc246;
+    width: 210px;
+}
+
+.btn1:hover {
+    background-color: #fb236a;
+}
+
+.btn2:hover {
+    background-color: #fb236a;
+}
+
+.title {
+    color: #0f36a5;
+}

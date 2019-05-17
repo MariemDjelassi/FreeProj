@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule, MatChipsModule } from '@angular/material';
-import { MatStepperModule, MatSnackBarModule } from '@angular/material';
+import { MatStepperModule, MatSnackBarModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   exports:
@@ -31,7 +31,8 @@ import { MatStepperModule, MatSnackBarModule } from '@angular/material';
     MatDividerModule,
     MatStepperModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {}
