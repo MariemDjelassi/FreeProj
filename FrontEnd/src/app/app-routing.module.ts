@@ -36,6 +36,7 @@ const routes: Routes = [
     {path : 'registerFreelancer', component : RegisterFreelancerComponent}
   ]},
   {path : 'company', component : CompanyComponent, canActivate: [AuthGuard], children : [
+    {path : '', pathMatch: 'full', redirectTo: 'editProfilComp' },
     {path : 'editProfilComp', component : EditProfilCompComponent},
     {path : 'addProject', component : AddProjectComponent},
     {path : 'ListProjects', component : ListProjectsComponent, children : [

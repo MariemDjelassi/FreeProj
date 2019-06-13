@@ -1,3 +1,4 @@
+import { ComponentsModule } from './components/components.module';
 import { ProjectSearchPipe } from './project-search.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -5,8 +6,10 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -75,16 +78,19 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule,
+    ComponentsModule,
     MaterialModule,
-    NgbModule,
+    // NgbModule,
     NgbModule.forRoot(),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    // MDBBootstrapModule.forRoot()
   ],
   exports: [DeleteDialogComponent, EditDialogComponent, LoginComponent, RegisterCompanyComponent,
             RegisterComponent, RegisterFreelancerComponent],
   entryComponents: [DeleteDialogComponent, EditDialogComponent, LoginComponent, RegisterCompanyComponent,
                     RegisterFreelancerComponent, RegisterComponent],
   providers: [NgbActiveModal],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

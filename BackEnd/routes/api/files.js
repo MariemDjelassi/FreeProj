@@ -23,6 +23,10 @@ router.post('/upload', upload.single('file'), function (req, res, next) {
     }
 });
 
+router.get('/download/:name', async (req, res) => {
+  await res.sendFile('C:\\Users\\ASUS\\Desktop\\5PointsProject\\Level 3\\Project Level 3\\BackEnd\\uploads\\'+ req.params.name);
+})
+// C:\Users\ASUS\Desktop\5PointsProject\Level 3\Project Level 3\BackEnd\uploads
 // router.get('/getContenue/:name',  function (req, res, next) {
 //     res.sendFile('C:/Users/houni/OneDrive/Bureau/Formation/Niveau4/Projet/uploads/' + req.params.name);
 // })

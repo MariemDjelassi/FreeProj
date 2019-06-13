@@ -1,5 +1,48 @@
-<nav class="navbar navbar-expand-sm bg-light justify-content-center">
-  <img src="../../assets/img/logo.jpg" class="logo">
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+          <!-- <mat-icon>menu</mat-icon> -->
+          
+        </button>
+      </div>
+      <div>
+        <a routerLink="javascript:void(0);">{{freelancer?.firstName}}</a>
+      </div>
+      <div class="example-header-image">
+          <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i><img src="http://localhost:3000/Upload/download/{{freelancer?.profileImage}}" class="rounded-circle z-depth-0"
+              alt="avatar image" height="50"></i>
+          <p>
+            <span class="d-lg-none d-md-block">Some Actions</span>
+          </p>
+        </a>
+      </div>
+      <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+          <li>
+            <a routerLink="/owner">Owner Actions</a>
+          </li>
+          <li>
+            <a routerLink="/account">Account Actions</a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+<!-- <mat-toolbar color="primary" class="navbar navbar-expand-sm  justify-content-center">
+  <img src="./../../assets/images/resource/logo4.png" class="logo">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,11 +59,12 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li><a style="font-weight:bold ; font-size: 20px;color: #1cb3e5;">{{freelancer?.first_name}}</a></li>
+      <br>
+      <li><a style="font-weight:bold ; font-size: 50px;color: #1cb3e5;">{{freelancer?.firstName}}</a></li>
       <li class="nav-item avatar">
         <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          <i><img src="http://localhost:3000/users/image/{{freelancer?.Image_Profil}}" class="rounded-circle z-depth-0"
+          <i><img src="http://localhost:3000/Upload/download/{{freelancer?.profileImage}}" class="rounded-circle z-depth-0"
               alt="avatar image" height="50"></i>
           <p>
             <span class="d-lg-none d-md-block">Some Actions</span>
@@ -35,10 +79,9 @@
       </li>
     </ul>
   </div>
-</nav>
+  </mat-toolbar> -->
 
-<section>
-  <div class=" no-padding">
+<!-- <div class=" no-padding">
     <div class="container">
       <div class="row no-gape">
         <aside class="col-lg-3  border-right">
@@ -60,5 +103,4 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </div> -->

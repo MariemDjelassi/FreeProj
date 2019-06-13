@@ -4,7 +4,7 @@ import { MatMenuModule, MatNativeDateModule, MatIconModule, MatCheckboxModule} f
 import { MatCardModule, MatRadioModule, MatListModule, MatToolbarModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatSidenavModule } from '@angular/material';
 import { MatDividerModule, MatChipsModule } from '@angular/material';
 import { MatStepperModule, MatSnackBarModule, MatSelectModule } from '@angular/material';
 
@@ -32,7 +32,8 @@ import { MatStepperModule, MatSnackBarModule, MatSelectModule } from '@angular/m
     MatStepperModule,
     MatSnackBarModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule {}

@@ -1,43 +1,13 @@
-<section class="overlape">
-  <div class="block no-padding">
-    <div data-velocity="-.1"
-      style="background: url(assets/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;"
-      class="parallax scrolly-invisible no-parallax"></div>
-    <!-- PARALLAX BACKGROUND IMAGE -->
-    <div class="container fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="inner-header">
-            <h3>Welcome Tera Planer</h3>
-          </div>
-        </div>
-      </div>
+<div class="wrapper">
+  <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+    <app-sidebar-material></app-sidebar-material>
+    <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar-material></app-navbar-material>
+    <router-outlet></router-outlet>
+    <div *ngIf="isMaps('maps')">
+      <app-footer-material></app-footer-material>
     </div>
   </div>
-</section>
-
-<section>
-  <div class="block no-padding">
-    <div class="container">
-      <div class="row no-gape">
-        <aside class="col-lg-3 column border-right">
-          <div class="widget">
-            <div class="tree_widget-sec">
-              <ul>
-                <li><a routerLink="/company/editProfilComp"><i class="la la-file-text"></i>My Profil</a></li>
-                <li><a routerLink="/company/ListProjects" title=""><i class="la la-briefcase"></i>My Projects</a></li>
-                <li><a routerLink="/company/addProject"><i class="la la-file-text"></i>Post Project</a></li>
-                <li><a routerLink="/company/listOffers" title=""><i class="la la-flash"></i>List Offers</a></li>
-                <li><a routerLink="/company/changePwrdComp" title=""><i class="la la-lock"></i>Change Password</a></li>
-                <li><a routerLink="/landingPage/home" (click)="logout()"><i class="la la-unlink"></i>Logout</a></li>
-              </ul>
-            </div>
-          </div>
-        </aside>
-        <div class="col-lg-9 column">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
